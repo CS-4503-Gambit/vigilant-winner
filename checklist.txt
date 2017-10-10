@@ -1,2 +1,6 @@
 Complete checklist
+<<<<<<< HEAD
 Adding a test row
+=======
+add line
+>>>>>>> 467fda7244c898c7f840dce4ebd0f99eb7cef824
