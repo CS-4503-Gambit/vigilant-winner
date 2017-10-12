@@ -1,5 +1,6 @@
 Create database (database layer)
     Implement in SQLite
+    
 Create data access layer:
     Implement in Python
 Create Logic Layer:
