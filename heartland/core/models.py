@@ -16,7 +16,7 @@ class Registrar(User):
 class Judge(User):
     pass
 
-# Admin Relation: No realtions, stores admin credentials
+# Admin Relation: No relations, stores admin credentials
 class Admin(Judge):
     pass
 
@@ -28,11 +28,11 @@ class Team(models.Model):
 
 # part of the ternary relation
 class Judge_Team(models.Model):
-    judge = models.OneToOneField(Judge, primary_key=True)
-    team = models.OneToOneField(Team)
+    judge = models.ForeignKey(Judge, null=False)
+    team = models.ForeignKey(Team, null=False)
 
     class Meta:
-        unique_together = ('judge', 'team')
+        unique_together = (('judge', 'team'),)
 
 # Score_Criterion Relation: Stores a specific scoring criterion, such as visuals or audio.
 # Can be applied to multiple categories.
