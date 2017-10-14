@@ -38,7 +38,12 @@ class Judge_Team(models.Model):
 # Can be applied to multiple categories.
 class Score_Criterion(models.Model):
     name = models.CharField(max_length=128, primary_key=True)
+
+# Score Relation: Actual judging score, part of ternary relation
+class Score(models.Model):
+    category = models.ForeignKey(Score_Criterion, on_delete=models.CASCADE)
     scores = models.ManyToManyField(Judge_Team)
+    value = models.IntegerField(null=False)
 
 # Category Relation: 
 class Category(models.Model):
