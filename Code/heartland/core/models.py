@@ -1,24 +1,13 @@
+from django.contrib.auth.models import User
 from django.db import models
 
-# User Relation: superclass to Registrar, Judge, Admin
-class User(models.Model):
-    username = models.CharField(max_length=128, primary_key=True)
-    password = models.CharField(max_length=128)
-
-    class Meta:
-        abstract = True
-
 # Registrar Relation: Relation with Team, many-to-one
-class Registrar(User):
-    pass
+class Registrar(models.Model):
+    user = models.OneToOneField(User, primary_key=True)
 
 # Judge Relation: Ternary relation with Team and Score, many to many to many
-class Judge(User):
-    pass
-
-# Admin Relation: No relations, stores admin credentials
-class Admin(Judge):
-    pass
+class Judge(models.Model):
+    user = models.OneToOneField(User, primary_key=True)
 
 # Team Relation: Stores team and entry information. Ternary relation with Judge and Score
 class Team(models.Model):
