@@ -1,10 +1,23 @@
+{% extends 'core/base.html' %}
+
 {% block title %}Login{% endblock %}
 
-{% block content %}
+{% block head_content %}
+    Login
+{% endblock %}
+
+{% block body_content %}
     <h2>Login</h2>
-    <form method="post">
+    <form method="post" id="login_form">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Login</button>
     </form>
+    <script type="text/javascript">
+        qrcode.callback = function(str) {
+            document.getElementById('id_username').value = "admin";
+            document.getElementById('id_password').value = "heartland";
+            document.getElementById('login_form').submit();
+        }
+    </script>
 {% endblock %}

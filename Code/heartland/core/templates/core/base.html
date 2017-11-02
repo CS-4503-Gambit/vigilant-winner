@@ -1,3 +1,41 @@
 <html>
-
+    <head>
+        {% block head_content %}
+        {% endblock %}
+        {% load static %}
+        <script type="text/javascript" src="{% static "/qr/grid.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/version.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/detector.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/formatinf.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/errorlevel.js" %}"></script> <script type="text/javascript" src="{% static "/qr/bitmat.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/datablock.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/bmparser.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/datamask.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/rsdecoder.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/gf256poly.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/gf256.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/decoder.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/qrcode.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/findpat.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/alignpat.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/databr.js" %}"></script> 
+    </head>
+    <body>
+        <script type="text/javascript">
+            var video = document.getElementById('video');
+            function showQR() {
+                document.getElementById('use_qr').style.visibility = 'hidden';
+                document.getElementById('video').style.visibility = 'visible';
+                qrcode.setWebcam("video");
+            }
+        </script>
+        {% block body_content %}
+        {% endblock %}
+        <p>
+            <button id="use_qr" onclick="showQR()">Use QR Code</button>
+        </p>
+        <p>
+            <video id="video" width="480" height="480" visibility="hidden"></video>
+        </p>
+    </body>
 </html>

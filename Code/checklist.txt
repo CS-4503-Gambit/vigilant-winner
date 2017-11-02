@@ -3,9 +3,11 @@ Create database (database layer)
     
 Create data access layer:
     Implement in Python
+
 Create Logic Layer:
     UI Backend
     Implement in Python
+
 Create GUI Layer:
     Administrator:
         
