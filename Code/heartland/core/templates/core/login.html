@@ -6,7 +6,8 @@
         <script type="text/javascript" src="{% static "/qr/version.js" %}"></script>
         <script type="text/javascript" src="{% static "/qr/detector.js" %}"></script>
         <script type="text/javascript" src="{% static "/qr/formatinf.js" %}"></script>
-        <script type="text/javascript" src="{% static "/qr/errorlevel.js" %}"></script> <script type="text/javascript" src="{% static "/qr/bitmat.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/errorlevel.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/bitmat.js" %}"></script>
         <script type="text/javascript" src="{% static "/qr/datablock.js" %}"></script>
         <script type="text/javascript" src="{% static "/qr/bmparser.js" %}"></script>
         <script type="text/javascript" src="{% static "/qr/datamask.js" %}"></script>
@@ -20,14 +21,6 @@
         <script type="text/javascript" src="{% static "/qr/databr.js" %}"></script> 
     </head>
     <body>
-        <script type="text/javascript">
-            var video = document.getElementById('video');
-            function showQR() {
-                document.getElementById('use_qr').style.visibility = 'hidden';
-                document.getElementById('video').style.visibility = 'visible';
-                qrcode.setWebcam("video");
-            }
-        </script>
         <h2>Login</h2>
         <form method="post" id="login_form">
             {% csrf_token %}
@@ -35,6 +28,10 @@
             <button type="submit">Login</button>
         </form>
         <script type="text/javascript">
+            function showQR() {
+                document.getElementById('use_qr').style.visibility = 'hidden';
+                qrcode.setWebcam("video");
+            }
             qrcode.callback = function(str) {
                 var split = str.split("%");
                 if (split.length == 2) {
@@ -50,7 +47,7 @@
             <button id="use_qr" onclick="showQR()">Use QR Code</button>
         </p>
         <p>
-            <video id="video" width="480" height="480" visibility="hidden"></video>
+            <video id="video" width="480" height="480" autoplay></video>
         </p>
     </body>
 </html>

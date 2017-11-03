@@ -1,3 +1,10 @@
 *.pyc
 ._*.pdf
-
+build
+*.iml
+.gradle
+*.properties
+.idea
+.DS_STORE
+captures
+.externalNativeBuild
