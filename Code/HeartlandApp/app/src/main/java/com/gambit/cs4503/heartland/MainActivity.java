@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        view.loadUrl("http://129.244.241.146:8000/login/");
+        view.loadUrl("https://129.244.241.146:8000/login/");
     }
 
     @Override

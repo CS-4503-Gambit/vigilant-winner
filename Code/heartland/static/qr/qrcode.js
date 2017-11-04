@@ -82,6 +82,7 @@ qrcode.captureToCanvas = function()
             };
         }
         catch(e){       
+                console.log("error in captureToCanvas");
                 console.log(e);
                 setTimeout(qrcode.captureToCanvas, 500);
         };

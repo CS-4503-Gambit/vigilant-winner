@@ -31,15 +31,23 @@
             function showQR() {
                 document.getElementById('use_qr').style.visibility = 'hidden';
                 qrcode.setWebcam("video");
+                if (navigator.getUserMedia) {
+                    navigator.getUserMedia({video: true}, handleVideo, handleError);
+                }
             }
+            function handleVideo(stream) {
+                document.getElementById('video').src = window.URL.createObjectURL(stream);
+            }
+            function handleError(e) {}
             qrcode.callback = function(str) {
+                alert(str);
                 var split = str.split("%");
                 if (split.length == 2) {
                     document.getElementById('id_username').value = split[0];
                     document.getElementById('id_password').value = split[1];
                     document.getElementById('login_form').submit();
                 } else {
-                    showQR();
+                    alert("Invalid login credentials")
                 }
             }
         </script>
@@ -47,7 +55,7 @@
             <button id="use_qr" onclick="showQR()">Use QR Code</button>
         </p>
         <p>
-            <video id="video" width="480" height="480" autoplay></video>
+            <video id="video" width="480" height="480" autoplay="true"></video>
         </p>
     </body>
 </html>
