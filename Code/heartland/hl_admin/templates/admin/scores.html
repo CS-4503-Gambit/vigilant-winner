@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>Scores</title>
+    </head>
+    <body>
+        <ul>
+            {% for category in categories %}
+            <li><a href="{% url 'category_score' category.name %}">{{category.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

@@ -14,6 +14,7 @@ class Team(models.Model):
     team_name = models.CharField(max_length=128, primary_key=True)
     entry_name = models.CharField(max_length=128)
     registrar = models.ForeignKey(Registrar)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
 
 # part of the ternary relation
 class Judge_Team(models.Model):
@@ -39,4 +40,3 @@ class Category(models.Model):
     name = models.CharField(max_length=128, primary_key=True)
     criteria = models.ManyToManyField(Score_Criterion)
 
-Team.category = models.ForeignKey(Category, on_delete=models.CASCADE)
