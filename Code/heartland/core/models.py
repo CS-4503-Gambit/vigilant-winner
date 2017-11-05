@@ -31,12 +31,14 @@ class Score_Criterion(models.Model):
 
 # Score Relation: Actual judging score, part of ternary relation
 class Score(models.Model):
-    category = models.ForeignKey(Score_Criterion, on_delete=models.CASCADE)
-    scores = models.ManyToManyField(Judge_Team)
+    criterion = models.ForeignKey(Score_Criterion, on_delete=models.CASCADE)
+    judge_team = models.ForeignKey(Judge_Team)
     value = models.IntegerField(null=False)
+
+    class Meta:
+        unique_together = (('judge_team', 'criterion'))
 
 # Category Relation: 
 class Category(models.Model):
     name = models.CharField(max_length=128, primary_key=True)
     criteria = models.ManyToManyField(Score_Criterion)
-

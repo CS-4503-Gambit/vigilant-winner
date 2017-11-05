@@ -8,3 +8,4 @@ build
 .DS_STORE
 captures
 .externalNativeBuild
+*.swp

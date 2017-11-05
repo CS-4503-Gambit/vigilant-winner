@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>Scoring Entry {{ team.entry_name }}</title>
+    </head>
+    <body>
+        <p>Entry {{ team.entry_name }}</p>
+        <form action="{% url 'submit_score' team.team_name %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit"/>
+        </form>
+    </body>
+</html>
