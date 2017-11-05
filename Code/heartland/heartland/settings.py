@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['129.244.241.146', 'localhost']
 INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'hl_admin.apps.HL_AdminConfig',
+    'judge.apps.JudgeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

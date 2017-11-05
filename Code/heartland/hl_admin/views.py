@@ -12,5 +12,5 @@ def scores(request):
 
 def category_score(request, category):
     c = Category.objects.get(name=category)
-    context = {'category': c, 'teams': c.team_set.all()}
+    context = {'category': c, 'teams': c.team_set.order_by()}
     return render(request, 'admin/score_category.html', context)
