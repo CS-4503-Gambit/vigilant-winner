@@ -25,5 +25,5 @@ def addteam(request):
 
 def showqr(request, team):
     teamurl = "https://api.qrserver.com/v1/create-qr-code/?data=" + team + "&amp;size=400x400"
-    context = {'team': team, 'teamurl': teamurl}
-    return render(request, 'registrar/showqr.html', context)
+    context = {'header': 'Team ' + team,'qrurl': teamurl, 'redirect': '/registrar/home'}
+    return render(request, 'core/showqr.html', context)

@@ -4,17 +4,19 @@ from django.db import models
 # Registrar Relation: Relation with Team, many-to-one
 class Registrar(models.Model):
     user = models.OneToOneField(User, primary_key=True)
+    password = models.CharField(max_length=128, null=False)
 
 # Judge Relation: Ternary relation with Team and Score, many to many to many
 class Judge(models.Model):
     user = models.OneToOneField(User, primary_key=True)
+    password = models.CharField(max_length=128, null=False)
 
 # Team Relation: Stores team and entry information. Ternary relation with Judge and Score
 class Team(models.Model):
     team_name = models.CharField(max_length=128, primary_key=True)
-    entry_name = models.CharField(max_length=128)
-    registrar = models.ForeignKey(Registrar)
-    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    entry_name = models.CharField(max_length=128, null=False)
+    registrar = models.ForeignKey(Registrar, null=False)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, null=False)
 
 # part of the ternary relation
 class Judge_Team(models.Model):
@@ -31,8 +33,8 @@ class Score_Criterion(models.Model):
 
 # Score Relation: Actual judging score, part of ternary relation
 class Score(models.Model):
-    criterion = models.ForeignKey(Score_Criterion, on_delete=models.CASCADE)
-    judge_team = models.ForeignKey(Judge_Team)
+    criterion = models.ForeignKey(Score_Criterion, on_delete=models.CASCADE, null=False)
+    judge_team = models.ForeignKey(Judge_Team, null=False)
     value = models.IntegerField(null=False)
 
     class Meta:

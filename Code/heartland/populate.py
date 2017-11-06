@@ -20,6 +20,7 @@ u.set_password('registrar')
 u.save()
 r = Registrar()
 r.user = u
+r.password = 'registrar'
 r.save()
 
 # Judge
@@ -30,6 +31,7 @@ u.set_password('judge')
 u.save()
 j = Judge()
 j.user = u
+j.password = 'judge'
 j.save()
 
 # Criteria
@@ -37,7 +39,6 @@ print('criteria')
 cr = Score_Criterion()
 cr.name = 'Overall'
 cr.save()
-print('saved one')
 cr = Score_Criterion()
 cr.name = 'Graphics'
 cr.save()
@@ -50,9 +51,7 @@ print('category')
 c = Category()
 c.name = 'Video Games'
 c.save()
-print('adding crit')
 c.criteria.add(Score_Criterion.objects.get(name='Overall'))
-print('added crit')
 c.criteria.add(Score_Criterion.objects.get(name='Graphics'))
 c.criteria.add(Score_Criterion.objects.get(name='Music'))
 c = Category()
@@ -62,15 +61,31 @@ c.criteria.add(Score_Criterion.objects.get(name='Overall'))
 c.criteria.add(Score_Criterion.objects.get(name='Graphics'))
 
 # Teams
+print('teams')
 t = Team()
 t.team_name = 'Team'
 t.entry_name = 'Entry'
 t.registrar = r
-t.category = c
+t.category = Category.objects.get(name='FPS')
 t.save()
 t = Team()
 t.team_name = 'Team Two'
 t.entry_name = 'Entry Two'
 t.registrar = r
-t.category = c
+t.category = Category.objects.get(name='Video Games')
 t.save()
+
+# Judge_Team
+print('judge_team')
+jt = Judge_Team()
+jt.team = t
+jt.judge = j
+jt.save()
+
+# Score
+print('score')
+s = Score()
+s.judge_team = jt
+s.criterion = cr
+s.value = 8
+s.save()

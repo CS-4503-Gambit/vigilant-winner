@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^scores/(?P<category>[\w\s]+)/(?P<criteria>[\w\s]+)$', views.scores, name='scores'),
     url(r'^judges/$', views.judges, name='judges'),
     url(r'^judges/(?P<judge_name>[\w\s]+)/$', views.judge_stats, name='judge_stats'),
+    url(r'^create_user/', views.create_user, name='create_user'),
+    url(r'^viewqr/', views.viewqr, name='viewqr'),
 ]

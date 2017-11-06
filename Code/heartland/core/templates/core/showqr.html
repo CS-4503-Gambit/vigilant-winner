@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>QR Code</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript">
+        function clicked() {
+            window.location = "{{ redirect }}";
+        }
+        </script>
+    </head>
+    <body>
+        <h2>
+            {{ header }}
+        </h2>
+        <img id='barcode' src="{{ qrurl }}" alt="" title="TEAMQR" width="400" height="400" onclick="clicked()"/>
+    </body>
+</html>
