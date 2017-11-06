@@ -138,7 +138,15 @@ class judge_tests(TestCase):
         t.registrar = r
         t.category = Category.objects.get(name="FPS")
         t.save()
-        #ADD SAMPLE SCORING FOR A TEAM HERE ------------------------------------------
+        jt = Judge_Team()
+        jt.team = t
+        jt.judge = j
+        jt.save()
+        s = Score()
+        s.judge_team = jt
+        s.criterion = cr
+        s.value = 8
+        s.save()
         self.client = Client()
         self.client.login(username="judge", password="judge")
         response = self.client.get('/judge/home')
@@ -192,7 +200,15 @@ class judge_tests(TestCase):
         t.registrar = r
         t.category = Category.objects.get(name="FPS")
         t.save()
-        #ADD SAMPLE SCORING FOR THE TEAM HERE ------------------------------------------
+        jt = Judge_Team()
+        jt.team = t
+        jt.judge = j
+        jt.save()
+        s = Score()
+        s.judge_team = jt
+        s.criterion = cr
+        s.value = 8
+        s.save()
         self.client = Client()
         self.client.login(username="judge", password="judge")
         response = self.client.get('/judge/home')
