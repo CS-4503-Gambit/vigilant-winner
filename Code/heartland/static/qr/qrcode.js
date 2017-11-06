@@ -14,7 +14,6 @@
    limitations under the License.
 */
 
-
 var qrcode = {};
 qrcode.imagedata = null;
 qrcode.width = 0;
@@ -27,23 +26,23 @@ qrcode.sizeOfDataLengthInfo =  [  [ 10, 9, 8, 8 ],  [ 12, 11, 16, 10 ],  [ 14, 1
 
 qrcode.callback = null;
 
-qr.vidSuccess = function (stream) 
+qrcode.vidSuccess = function (stream) 
 {
-    video = document.getElementById('video');
-    video.src = window.URL.createObjectURL(stream);
-    video.width = 500;
-    video.height = 500;
     qrcode.localstream = stream;
-    if(qrcode.webkit)
-        qrcode.video.src = window.webkitURL.createObjectURL(stream);
-    else
-    if(qrcode.moz)
-    {
-        qrcode.video.mozSrcObject = stream;
-        qrcode.video.play();
-    }
-    else
-        qrcode.video.src = stream;
+//    if(qrcode.webkit)
+//        qrcode.video.src = window.webkitURL.createObjectURL(stream);
+//    else
+//    if(qrcode.moz)
+//    {
+//        qrcode.video.mozSrcObject = stream;
+//        qrcode.video.play();
+//    }
+//    else
+//        qrcode.video.src = stream;
+    qrcode.video.src = window.URL.createObjectURL(stream);
+    qrcode.video.width=500;
+    qrcode.video.height=500;
+    qrcode.video.play();
     
     qrcode.gUM=true;
     
@@ -57,7 +56,6 @@ qr.vidSuccess = function (stream)
         
 qrcode.vidError = function(error)
 {
-    alert("error");
     qrcode.gUM=false;
     return;
 }
@@ -127,7 +125,7 @@ qrcode.setWebcam = function(videoId)
     }
     
     if(n.getUserMedia)
-        n.getUserMedia({video: options, audio: false}, qr.vidSuccess, qrcode.vidError);
+        n.getUserMedia({video: options, audio: false}, qrcode.vidSuccess, qrcode.vidError);
     else
     if(n.webkitGetUserMedia)
     {

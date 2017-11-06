@@ -28,14 +28,7 @@
                     video.width = 480;
                     video.height = 480;
                     qrcode.setWebcam("video");
-                    if (navigator.getUserMedia) {
-                        navigator.getUserMedia({video: true}, handleVideo, handleError);
-                    }
                 }
-                function handleVideo(stream) {
-                    document.getElementById('video').src = window.URL.createObjectURL(stream);
-                }
-                function handleError(e) {}
                 qrcode.callback = function(str) {
                     alert(str);
                     window.location.href = "/judge/teams/" + str;

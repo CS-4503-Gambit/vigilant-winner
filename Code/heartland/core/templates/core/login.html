@@ -31,16 +31,7 @@
             function showQR() {
                 document.getElementById('use_qr').style.visibility = 'hidden';
                 qrcode.setWebcam("video");
-                if (navigator.getUserMedia) {
-                    navigator.getUserMedia({video: true}, handleVideo, handleError);
-                }
             }
-            function handleVideo(stream) {
-                document.getElementById('video').width=500;
-                document.getElementById('video').height=500;
-                document.getElementById('video').src = window.URL.createObjectURL(stream);
-            }
-            function handleError(e) {}
             qrcode.callback = function(str) {
                 alert(str);
                 var split = str.split("%");
@@ -57,7 +48,7 @@
             <button id="use_qr" onclick="showQR()">Use QR Code</button>
         </p>
         <p>
-            <video id="video" width="0" height="0" autoplay="true"></video>
+            <video id="video" width=0 height=0 autoplay=true/>
         </p>
     </body>
 </html>
