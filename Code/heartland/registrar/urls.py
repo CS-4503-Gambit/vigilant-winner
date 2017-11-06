@@ -4,4 +4,6 @@ from . import views
 
 urlpatterns = [
     url(r'^home$', views.home, name='home'),
+    url(r'^addteam/', views.addteam, name='addteam'),
+    url(r'^showqr/(?P<team>[\s\w]+)', views.showqr, name='showqr'),
 ]

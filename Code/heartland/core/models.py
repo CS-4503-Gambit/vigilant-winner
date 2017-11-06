@@ -42,3 +42,6 @@ class Score(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=128, primary_key=True)
     criteria = models.ManyToManyField(Score_Criterion)
+    
+    def __str__(self):
+        return self.name

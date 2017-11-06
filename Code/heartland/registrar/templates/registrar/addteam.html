@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Register Team</title>
+    </head>
+    <body>
+        <h2>
+            Register Team
+        </h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit"/>
+        </form>
+    </body>
+</html>
