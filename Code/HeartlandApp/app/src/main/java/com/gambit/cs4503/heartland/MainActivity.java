@@ -5,10 +5,12 @@ import android.app.Activity;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.webkit.PermissionRequest;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -29,6 +31,8 @@ public class MainActivity extends Activity {
         view.getSettings().setUseWideViewPort(true);
         view.getSettings().setAllowFileAccessFromFileURLs(true);
         view.getSettings().setAllowUniversalAccessFromFileURLs(true);
+        view.getSettings().setPluginState(WebSettings.PluginState.ON);
+        view.getSettings().setMediaPlaybackRequiresUserGesture(false);
         view.setWebViewClient(new WebViewClient(){
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
@@ -37,16 +41,11 @@ public class MainActivity extends Activity {
         });
         view.setWebChromeClient(new WebChromeClient() {
             // Need to accept permissions to use the camera and audio
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onPermissionRequest(final PermissionRequest request) {
                 Log.d("WebChromeClient", "onPermissionRequest");
-                MainActivity.this.runOnUiThread(new Runnable() {
-                    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-                    @Override
-                    public void run() {
-                        request.grant(request.getResources());
-                    }
-                });
+                request.grant(request.getResources());
             }
         });
 

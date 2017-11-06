@@ -27,8 +27,12 @@ qrcode.sizeOfDataLengthInfo =  [  [ 10, 9, 8, 8 ],  [ 12, 11, 16, 10 ],  [ 14, 1
 
 qrcode.callback = null;
 
-qrcode.vidSuccess = function (stream) 
+qr.vidSuccess = function (stream) 
 {
+    video = document.getElementById('video');
+    video.src = window.URL.createObjectURL(stream);
+    video.width = 500;
+    video.height = 500;
     qrcode.localstream = stream;
     if(qrcode.webkit)
         qrcode.video.src = window.webkitURL.createObjectURL(stream);
@@ -53,6 +57,7 @@ qrcode.vidSuccess = function (stream)
         
 qrcode.vidError = function(error)
 {
+    alert("error");
     qrcode.gUM=false;
     return;
 }
@@ -122,7 +127,7 @@ qrcode.setWebcam = function(videoId)
     }
     
     if(n.getUserMedia)
-        n.getUserMedia({video: options, audio: false}, qrcode.vidSuccess, qrcode.vidError);
+        n.getUserMedia({video: options, audio: false}, qr.vidSuccess, qrcode.vidError);
     else
     if(n.webkitGetUserMedia)
     {
