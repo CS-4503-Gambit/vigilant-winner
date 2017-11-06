@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>Criteria for {{ category.name }}</title>
+    </head>
+    <body>
+        <p>{{ category.name }}</p>
+        <ul>
+            {% for crit in category.criteria.all %}
+                <li><a href="{% url  'scores' category.name crit.name %}">{{crit.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

@@ -2,10 +2,12 @@ package com.gambit.cs4503.heartland;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.PermissionRequest;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -27,7 +29,12 @@ public class MainActivity extends Activity {
         view.getSettings().setUseWideViewPort(true);
         view.getSettings().setAllowFileAccessFromFileURLs(true);
         view.getSettings().setAllowUniversalAccessFromFileURLs(true);
-        view.setWebViewClient(new WebViewClient());
+        view.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                handler.proceed(); // Ignore SSL certificate errors
+            }
+        });
         view.setWebChromeClient(new WebChromeClient() {
             // Need to accept permissions to use the camera and audio
             @Override
