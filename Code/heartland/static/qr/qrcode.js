@@ -106,7 +106,6 @@ qrcode.setWebcam = function(videoId)
               devices.forEach(function(device) {
                 console.log("deb1");
                 if (device.kind === 'videoinput') {
-                  if(device.label.toLowerCase().search("back") >-1)
                     options=[{'sourceId': device.deviceId}] ;
                 }
                 console.log(device.kind + ": " + device.label +
