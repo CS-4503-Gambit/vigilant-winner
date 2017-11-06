@@ -22,3 +22,13 @@ def scores(request, category, criteria):
     scores = Score.objects.filter(criterion=crit).values('judge_team__team').annotate(avg=Avg('value')).order_by('-avg')
     context = {'category': cat, 'criterion': crit, 'scores': scores}
     return render(request, 'admin/scores.html', context)
+
+def judges(request):
+    context = {'judges': Judge.objects.all()}
+    return render(request, 'admin/judges.html', context)
+
+def judge_stats(request, judge_name):
+    judge = Judge.objects.get(user__username=judge_name)
+    scores = Score.objects.filter(judge_team__judge=judge).values('criterion').annotate(avg=Avg('value'))
+    context = {'judge': judge, 'scores': scores}
+    return render(request, 'admin/judge_stats.html', context)
