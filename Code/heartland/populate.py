@@ -3,6 +3,15 @@
 
 from core.models import *
 
+# Admin
+print('admin')
+u = User()
+u.username='admin'
+u.set_password('heartland')
+u.is_superuser=True
+u.is_staff=True
+u.save()
+
 # Registrar
 print('registrar')
 u = User()
@@ -59,4 +68,9 @@ t.entry_name = 'Entry'
 t.registrar = r
 t.category = c
 t.save()
-
+t = Team()
+t.team_name = 'Team Two'
+t.entry_name = 'Entry Two'
+t.registrar = r
+t.category = c
+t.save()

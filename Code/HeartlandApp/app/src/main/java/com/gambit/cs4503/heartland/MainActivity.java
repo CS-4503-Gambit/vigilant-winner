@@ -37,8 +37,6 @@ public class MainActivity extends Activity {
                     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                     @Override
                     public void run() {
-                        // Make sure the request is coming from our file
-                        // Warning: This check may fail for local files
                         request.grant(request.getResources());
                     }
                 });

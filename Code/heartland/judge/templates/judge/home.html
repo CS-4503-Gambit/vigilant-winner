@@ -1,8 +1,71 @@
 <html>
     <head>
-        <title>Judge Home</title>
+        {% load static %}
+        <title>Teams</title>
+        <script type="text/javascript" src="{% static "/qr/grid.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/version.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/detector.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/formatinf.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/errorlevel.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/bitmat.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/datablock.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/bmparser.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/datamask.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/rsdecoder.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/gf256poly.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/gf256.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/decoder.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/qrcode.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/findpat.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/alignpat.js" %}"></script>
+        <script type="text/javascript" src="{% static "/qr/databr.js" %}"></script> 
     </head>
     <body>
-        <p><a href="/judge/teams/">Judge a Team</a></p>
+        <script type="text/javascript">
+                function showQR() {
+                    document.getElementById('use_qr').style.visibility = 'hidden';
+                    video = document.getElementById('video');
+                    video.width = 480;
+                    video.height = 480;
+                    qrcode.setWebcam("video");
+                    if (navigator.getUserMedia) {
+                        navigator.getUserMedia({video: true}, handleVideo, handleError);
+                    }
+                }
+                function handleVideo(stream) {
+                    document.getElementById('video').src = window.URL.createObjectURL(stream);
+                }
+                function handleError(e) {}
+                qrcode.callback = function(str) {
+                    alert(str);
+                    window.location.href = "/judge/teams/" + str;
+                }
+        </script>
+        <p>
+            <button id="use_qr" onclick="showQR()">Use QR Code</button>
+        </p>
+        <p>
+            <video id="video" width="0" height="0" autoplay="true"/>
+        </p>
+        {% if unjudged %}
+            <h1>
+                Teams Left to Judge
+            </h1>
+            <ul>
+                {% for team in unjudged %}
+                <li><a href="{% url 'judge_team' team.team_name %}">{{ team.entry_name }}</a> by {{team.team_name}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if judged %}
+            <h1>
+                Already Judged Teams
+            </h1>
+            <ul>
+                {% for team in judged %}
+                <li><a href="{% url 'judge_team' team.team_name %}">{{ team.entry_name }}</a> by {{team.team_name}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </body>
 </html>
