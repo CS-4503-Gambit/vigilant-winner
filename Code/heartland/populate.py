@@ -59,4 +59,9 @@ t.entry_name = 'Entry'
 t.registrar = r
 t.category = c
 t.save()
-
+t = Team()
+t.team_name = 'Team Two'
+t.entry_name = 'Entry Two'
+t.registrar = r
+t.category = c
+t.save()

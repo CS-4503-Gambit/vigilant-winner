@@ -5,11 +5,11 @@ from .forms import JudgeForm
 
 # Create your views here.
 def home(request):
-    return render(request, 'judge/home.html')
-
-def teams(request):
-    context = {'teams': Team.objects.all()}
-    return render(request, 'judge/teams.html', context)
+    judge = request.user.judge 
+    unjudged = Team.objects.exclude(team_name__in=Judge_Team.objects.filter(judge=judge).values('team'))
+    judged = Team.objects.filter(team_name__in=Judge_Team.objects.filter(judge=judge).values('team'))
+    context = {'unjudged': unjudged, 'judged': judged}
+    return render(request, 'judge/home.html', context)
 
 def judge_team(request, team_name):
     judge = request.user.judge
@@ -55,4 +55,4 @@ def submit_score(request, team_name):
             s.criterion = crit
         s.value = data[crit.name]
         s.save()
-    return redirect('teams')
+    return redirect('home')
