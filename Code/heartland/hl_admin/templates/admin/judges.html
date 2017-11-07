@@ -12,4 +12,10 @@
             <li><a href="{% url 'judge_stats' judge.user.username %}">{{judge.user.username}}</a></li>
         {% endfor %}
     </ul>
+    <script type = "text/javascript">
+		function home(){
+			window.location.href= "/admin/home";
+		}
+    </script>
+    <p><button onclick="home()">Home</button>
 {% endblock %}
