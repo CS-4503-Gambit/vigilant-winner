@@ -33,7 +33,20 @@
             window.location.href = "/judge/teams/" + str;
         }
         function syncDb() {
-            window.location.href = "/judge/sync/";
+            var data = localStorage["forms"];
+            if (data !== null) {
+                var http = new XMLHttpRequest();
+                var url = "/judge/sync/";
+                http.open("POST", url, true);
+                http.setRequestHeader("Content-Type", "application/json");
+                http.onreadystatechange = function() {
+                    if (http.readyState === XMLHttpRequest.DONE && http.status === 200) {
+                        localStorage.removeItem("forms");
+                        alert("Sync complete!");
+                    }
+                }
+                http.send(data);
+            }
         }
     </script>
     <p>
