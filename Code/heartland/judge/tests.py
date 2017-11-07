@@ -5,6 +5,7 @@ from core.models import *
 # Create your tests here.
 class judge_tests(TestCase):
     #Sets up database and checks to see if an empty judge home page will load
+    # Test by Anthony
     def test_judge_home_empty(self):
         u = User()
         u.username='judge'
@@ -40,6 +41,7 @@ class judge_tests(TestCase):
         self.assertEqual(response.status_code, 200)
        
     #Sets up database and checks to see if a judge home page will load with only unjudged teams
+    # Test by Anthony
     def test_judge_home_unjudged(self):
         u = User()
         u.username='judge'
@@ -94,6 +96,7 @@ class judge_tests(TestCase):
         self.assertEqual(len(response.context['judged']), 0)
 
     #Sets up database and checks to see if a judge home page will load with unjudged and judged teams
+    # Test by Anthony
     def test_judge_home_unjudged_and_judged(self):
         u = User()
         u.username='judge'
@@ -163,6 +166,7 @@ class judge_tests(TestCase):
         self.assertEqual(len(response.context['judged']), 1)
         
     #Sets up database and checks to see if a judge home page will load with only judged teams
+    # Test by Anthony
     def test_judge_home_judged(self):
         u = User()
         u.username='judge'
@@ -226,6 +230,7 @@ class judge_tests(TestCase):
         self.assertEqual(len(response.context['judged']), 1)
         
     #Sets up database and checks to see if a judge scoring page will load        
+    # Test by Anthony
     def test_judge_Score(self):
         u = User()
         u.username='judge'

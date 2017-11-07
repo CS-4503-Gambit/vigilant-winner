@@ -4,12 +4,14 @@ from core.models import *
 # Create your tests here.
 class AdminTestCase(TestCase):
 
+    # Test by Jon
     def setup(self):
         exec(open('populate.py').read())
         self.client = Client()
         self.client.login(username='admin', password='heartland')
 
     # Test the home screen for admin login
+    # Test by Jon
     def test_admin_home(self):
         self.setup()
         response = self.client.get('/admin/home/')
@@ -23,6 +25,7 @@ class AdminTestCase(TestCase):
         self.assertContains(response, "View QR Codes")
 
     # Test the category display
+    # Test by Jon
     def test_category_display(self):
         self.setup()
         response = self.client.get('/admin/scores/')
@@ -33,6 +36,7 @@ class AdminTestCase(TestCase):
         self.assertContains(response, "Art")
 
     # Test the create user screen
+    # Test by Jon
     def test_create_user(self):
         self.setup()
         response = self.client.get('/admin/create_user/')
@@ -44,6 +48,7 @@ class AdminTestCase(TestCase):
         self.assertContains(response, 'Type')
     
     # Test the View QR Code screen
+    # Test by Jon
     def test_view_qr(self):
         self.setup()
         response = self.client.get('/admin/viewqr/')
@@ -61,7 +66,9 @@ class AdminTestCase(TestCase):
         self.assertContains(response, 'Bethesda Softworks')
         self.assertContains(response, 'Irrational Studios')
         self.assertContains(response, 'Leonardo Da Vinci')
-
+    
+    # Test that the judge listing is correct
+    # Test by Jon
     def test_judge_list(self):
         self.setup()
         response = self.client.get('/admin/judges/')
