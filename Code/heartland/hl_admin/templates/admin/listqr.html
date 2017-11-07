@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>List of QR Entities</title>
+    </head>
+    {% if registrars %}
+        <h2>Registrars</h2>
+        {% for reg in registrars %}
+            <p><a href='{% url 'qr_registrar' reg.user.username %}'>{{ reg.user.username }}</a></p>
+        {% endfor %}
+    {% endif %}
+    {% if judges %}
+        <h2>Judges</h2>
+        {% for judge in judges %}
+            <p><a href='{% url 'qr_judge' judge.user.username %}'>{{ judge.user.username }}</a></p>
+        {% endfor %}
+    {% endif %}
+    {% if teams %}
+        <h2>Teams</h2>
+        {% for team in teams %}
+            <p><a href='{% url 'qr_team' team.team_name %}'>{{ team.team_name }}</a></p>
+        {% endfor %}
+    {% endif %}
+</html>
+

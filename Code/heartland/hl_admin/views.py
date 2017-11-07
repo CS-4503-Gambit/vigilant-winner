@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from core.models import *
 from django.db.models import Avg
@@ -38,22 +38,23 @@ def judge_stats(request, judge_name):
 def create_user(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
-        u = User()
-        u.username = form.data['username']
-        u.set_password(form.data['password'])
-        u.save()
-        if form.data['type'] == 'Registrar':
-            r = Registrar()
-            r.user = u
-            r.password = form.data['password']
-            r.save()
-        elif form.data['type'] == 'Judge':
-            j = Judge()
-            j.user = u
-            j.password = form.data['password']
-            j.save()
-        else:
-            return HttpResponse("Hey buddy\t" + form.data['type'])
+        try:
+            u = User.objects.get(username=form.data['username'])
+        except:
+            u = User()
+            u.username = form.data['username']
+            u.set_password(form.data['password'])
+            u.save()
+            if form.data['type'] == 'Registrar':
+                r = Registrar()
+                r.user = u
+                r.password = form.data['password']
+                r.save()
+            elif form.data['type'] == 'Judge':
+                j = Judge()
+                j.user = u
+                j.password = form.data['password']
+                j.save()
         encoded = form.data['username'] + '%' + form.data['password']
         userurl = "https://api.qrserver.com/v1/create-qr-code/?data=" + encoded + "&amp;size=400x400"
         context = {'header': u.username, 'qrurl': userurl, 'redirect': '/admin/createuser'}
@@ -68,3 +69,33 @@ def viewqr(request):
     teams = Team.objects.all()
     context = {'registrars': registrars, 'judges': judges, 'teams': teams}
     return render(request, 'admin/listqr.html', context)
+
+def qr_registrar(request, registrar_name):
+    try:
+        registrar = Registrar.objects.get(user__username=registrar_name)
+        encoded = registrar.user.username + '%' + registrar.password
+        regurl = "https://api.qrserver.com/v1/create-qr-code/?data=" + encoded + "&amp;size=400x400"
+        context = {'header': 'Registrar ' + registrar.user.username, 'qrurl': regurl, 'redirect': '/admin/home'}
+        return render(request, 'core/showqr.html', context)
+    except:
+        return redirect('viewqr')
+    
+def qr_judge(request, judge_name):
+    try:
+        judge = Judge.objects.get(user__username=judge_name)
+        encoded = judge.user.username + '%' + judge.password
+        judgeurl = "https://api.qrserver.com/v1/create-qr-code/?data=" + encoded + "&amp;size=400x400"
+        context = {'header': 'Judge ' + judge.user.username, 'qrurl': judgeurl, 'redirect': '/admin/home'}
+        return render(request, 'core/showqr.html', context)
+    except:
+        return redirect('viewqr')
+
+def qr_team(request, team_name):
+    try:
+        team = Team.objects.get(team_name=team_name)
+        team_url = "https://api.qrserver.com/v1/create-qr-code/?data=" + team.team_name + "&amp;size=400x400"
+        context = {'header': 'Team ' + team.team_name, 'qrurl': team_url, 'redirect': '/admin/home'}
+        return render(request, 'core/showqr.html', context)
+    except:
+        return redirect('viewqr')
+
