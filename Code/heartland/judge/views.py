@@ -4,24 +4,31 @@ from core.models import *
 from .forms import JudgeForm
 
 # Create your views here.
+#Home page for the judge page
 def home(request):
     judge = request.user.judge 
+	#Database searches to seperate judged and unjuded teams
     unjudged = Team.objects.exclude(team_name__in=Judge_Team.objects.filter(judge=judge).values('team'))
     judged = Team.objects.filter(team_name__in=Judge_Team.objects.filter(judge=judge).values('team'))
+	#map to html page
     context = {'unjudged': unjudged, 'judged': judged}
     return render(request, 'judge/home.html', context)
 
+#Judgeing page where scoring criteria are desplayed for a particular team
 def judge_team(request, team_name):
     judge = request.user.judge
+	#try if the team name is in the database, mostly used when scanning QR code
     try:
         team = Team.objects.get(team_name=team_name)
     except:
         return redirect('/judge/home')
+	#get criteria for specific team that is being loaded
     category = team.category
     criteria = []
     for crit in category.criteria.all():
         criteria.append(crit.name)
     try:
+		#Checks to see if score values exist for the selected team
         jt = Judge_Team.objects.get(judge=judge, team=team)
         initial = {}
         for crit in category.criteria.all():
@@ -36,10 +43,12 @@ def judge_team(request, team_name):
     context = {'team': team, 'form': form}
     return render(request, 'judge/score.html', context)
 
+#Functionality of sending scores to database after score is submitted, returns to home page
 def submit_score(request, team_name):
     judge = request.user.judge
     team = Team.objects.get(team_name=team_name)
     category = team.category
+	#checks if Judge_Team object exists, if not create database object
     try:
         jt = Judge_Team.objects.get(judge=judge, team=team)
     except:
@@ -49,6 +58,7 @@ def submit_score(request, team_name):
         jt.save()
     form = JudgeForm(request.POST, criteria=None)
     data = form.data
+	#iterates through criteria to updates or add scores 
     for crit in category.criteria.all():
         try:
             s = jt.score_set.get(criterion=crit)
