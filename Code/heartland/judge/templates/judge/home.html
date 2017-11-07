@@ -1,6 +1,7 @@
 {% extends 'judge/base.html' %}
 {% block head %}
     {% load static %}
+    {% load judge_extras %}
     <title>Teams</title>
     <script type="text/javascript" src="{% static "/qr/grid.js" %}"></script>
     <script type="text/javascript" src="{% static "/qr/version.js" %}"></script>
@@ -74,14 +75,27 @@
             {% endfor %}
         </ul>
     {% endif %}
-    {% if judged %}
+    {% if scorings %}
         <h1>
             Already Judged Teams
         </h1>
-        <ul>
-            {% for team in judged %}
-            <li><a href="{% url 'judge_team' team.team_name %}">{{ team.entry_name }}</a> by {{team.team_name}}</li>
+        <table style="width:100%">
+            <tr>
+                <th align="left">Team Name</th>
+                <th align="left">Entry Name</th>
+                {% for crit in criteria %}
+                    <th align="left">{{ crit }}</th>
+                {% endfor %}
+            </tr>
+            {% for scoring in scorings %}
+                <tr>
+                    <td><a href="{% url 'judge_team' scoring.judge_team.team.team_name %}">{{ scoring.judge_team.team.team_name }}</a></td>
+                    <td>{{ scoring.judge_team.team.entry_name }}</td>
+                    {% for crit in criteria %}
+                        <td>{{ scoring|get_item:crit }}</td>
+                    {% endfor %}
+                </tr>
             {% endfor %}
-        </ul>
+        </table>
     {% endif %}
 {% endblock %}

@@ -12,11 +12,24 @@ def home(request):
 	#Database searches to seperate judged and unjuded teams
     unjudged = Team.objects.exclude(team_name__in=Judge_Team.objects.filter(judge=judge).values('team'))
     judged = Team.objects.filter(team_name__in=Judge_Team.objects.filter(judge=judge).values('team'))
+    criteria = [x['name'] for x in Score_Criterion.objects.values('name')]
+    scorings = []
+    judge_teams = Judge_Team.objects.filter(judge=judge)
+    for jt in judge_teams:
+        d = {}
+        d['judge_team'] = jt
+        jt_crit = [x['criterion'] for x in jt.score_set.values('criterion')]
+        for crit in criteria:
+            if crit in jt_crit:
+                d[crit] = str(jt.score_set.get(criterion=crit).value)
+            else:
+                d[crit] = "N/A"
+        scorings.append(d)
 	#map to html page
-    context = {'unjudged': unjudged, 'judged': judged}
+    context = {'unjudged': unjudged, 'scorings': scorings, 'criteria': criteria}
     return render(request, 'judge/home.html', context)
 
-#Judgeing page where scoring criteria are desplayed for a particular team
+#Judging page where scoring criteria are desplayed for a particular team
 def judge_team(request, team_name):
     judge = request.user.judge
 	#try if the team name is in the database, mostly used when scanning QR code

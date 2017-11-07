@@ -8,7 +8,11 @@
         Results for {{ category.name }}:{{ criterion.name }}
     </h2>
     <table style="width:100%">
-        <tr><th>Team Name</th><th>Entry Name</th><th>Average Score</th></tr>
+        <tr>
+            <th align="left">Team Name</th>
+            <th align="left">Entry Name</th>
+            <th align="left">Average Score</th>
+        </tr>
         {% for score in scores %}
         <tr>
             <td>{{ score.judge_team__team }}</td>
