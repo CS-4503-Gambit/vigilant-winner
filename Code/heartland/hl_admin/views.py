@@ -57,7 +57,7 @@ def create_user(request):
                 j.save()
         encoded = form.data['username'] + '%' + form.data['password']
         userurl = "https://api.qrserver.com/v1/create-qr-code/?data=" + encoded + "&amp;size=400x400"
-        context = {'header': u.username, 'qrurl': userurl, 'redirect': '/admin/createuser'}
+        context = {'header': u.username, 'qrurl': userurl, 'redirect': '/admin/home'}
         return render(request, 'core/showqr.html', context)
     form = CreateUserForm()
     context = {'form': form}
