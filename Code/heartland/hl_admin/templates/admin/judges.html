@@ -1,15 +1,15 @@
-<html>
-    <head>
-        <title>Judges</title>
-    </head>
-    <body>
-        <h2>
-            List of Judges
-        </h2>
-        <ul>
-            {% for judge in judges %}
-                <li><a href="{% url 'judge_stats' judge.user.username %}">{{judge.user.username}}</a></li>
-            {% endfor %}
-        </ul>
-    </body>
-</html>
+{% extends 'admin/base.html' %}
+
+{% block head %}
+    <title>Judges</title>
+{% endblock %}
+{% block body %}
+    <h2>
+        List of Judges
+    </h2>
+    <ul>
+        {% for judge in judges %}
+            <li><a href="{% url 'judge_stats' judge.user.username %}">{{judge.user.username}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

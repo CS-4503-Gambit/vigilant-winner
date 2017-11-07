@@ -1,7 +1,9 @@
-<html>
-    <head>
-        <title>List of QR Entities</title>
-    </head>
+{% extends 'admin/base.html' %}
+
+{% block head %}
+    <title>List of QR Entities</title>
+{% endblock %}
+{% block body %}
     {% if registrars %}
         <h2>Registrars</h2>
         {% for reg in registrars %}
@@ -20,5 +22,4 @@
             <p><a href='{% url 'qr_team' team.team_name %}'>{{ team.team_name }}</a></p>
         {% endfor %}
     {% endif %}
-</html>
-
+{% endblock %}

@@ -1,18 +1,18 @@
-<html>
-    <head>
-        <title>Score Results for {{ category.name }}:{{ criterion.name }}</title>
-    </head>
-    <body>
-        <h2>
-            Results for {{ category.name }}:{{ criterion.name }}
-        </h2>
-        <table style="width:100%">
-            <tr><th>Team Name</th><th>Average Score</th></tr>
-            {% for score in scores %}
-            <tr>
-                <td>{{ score.judge_team__team }}</td><td>{{ score.avg }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </body>
-</html>
+{% extends 'admin/base.html' %}
+
+{% block head %}
+    <title>Score Results for {{ category.name }}:{{ criterion.name }}</title>
+{% endblock %}
+{% block body %}
+    <h2>
+        Results for {{ category.name }}:{{ criterion.name }}
+    </h2>
+    <table style="width:100%">
+        <tr><th>Team Name</th><th>Average Score</th></tr>
+        {% for score in scores %}
+        <tr>
+            <td>{{ score.judge_team__team }}</td><td>{{ score.avg }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

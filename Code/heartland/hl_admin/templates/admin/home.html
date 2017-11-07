@@ -1,22 +1,22 @@
-<html>
-    <head>
-        <title>Admin Home</title>
-    </head>
-    <body>
-        <p>
-            <a href="/admin/db/">Manage Database</a>
-        </p>
-        <p>
-            <a href="/admin/scores/">View Results</a>
-        </p>
-        <p>
-            <a href="/admin/judges/">View Judging Statistics</a>
-        </p>
-        <p>
-            <a href="/admin/create_user/">Create Judge or Registrar</a>
-        </p>
-        <p>
-            <a href="/admin/viewqr/">View QR Codes</a>
-        </p>
-    </body>
-</html>
+{% extends 'admin/base.html' %}
+
+{% block head %}
+    <title>Admin Home</title>
+{% endblock %}
+{% block body %}
+    <p>
+        <a href="/admin/db/">Manage Database</a>
+    </p>
+    <p>
+        <a href="/admin/scores/">View Results</a>
+    </p>
+    <p>
+        <a href="/admin/judges/">View Judging Statistics</a>
+    </p>
+    <p>
+        <a href="/admin/create_user/">Create Judge or Registrar</a>
+    </p>
+    <p>
+        <a href="/admin/viewqr/">View QR Codes</a>
+    </p>
+{% endblock %}

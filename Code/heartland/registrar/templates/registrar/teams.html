@@ -1,26 +1,25 @@
-<html>
-    <head>
-        <title>Registered Teams</title>
-    </head>
-    <body>
-        <h2>
-            Registered Teams
-        </h2>
-        {% if myteams %}
-            <h3>My Teams</h2>
-            <ul>
-                {% for team in myteams %}
-                    <li><a href="{% url 'editteam' team.team_name %}">{{ team.team_name }}</a></li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        {% if otherteams %}
-            <h3>Other Teams</h3>
-            <ul>
-                {% for team in otherteams %}
-                    <li><a href="{% url 'editteam' team.team_name %}">{{ team.team_name }}</a></li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </body>
-</html>
+{% extends 'registrar/base.html' %}
+{% block head %}
+    <title>Registered Teams</title>
+{% endblock %}
+{% block body %}
+    <h2>
+        Registered Teams
+    </h2>
+    {% if myteams %}
+        <h3>My Teams</h2>
+        <ul>
+            {% for team in myteams %}
+                <li><a href="{% url 'editteam' team.team_name %}">{{ team.team_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if otherteams %}
+        <h3>Other Teams</h3>
+        <ul>
+            {% for team in otherteams %}
+                <li><a href="{% url 'editteam' team.team_name %}">{{ team.team_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

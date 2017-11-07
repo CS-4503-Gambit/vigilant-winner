@@ -1,16 +1,16 @@
-<html>
-    <head>
-        <title>Stats for Judge {{ judge.user.username }}</title>
-    </head>
-    <body>
-        <h2>Stats for Judge {{ judge.user.username }}</h2>
-        <table>
-            <tr><th>Criterion</th><th>Average Score</th></tr>
-            {% for score in scores %}
-            <tr>
-                <td>{{ score.criterion }}</td><td>{{ score.avg }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </body>
-</html>
+{% extends 'admin/base.html' %}
+
+{% block head %}
+    <title>Stats for Judge {{ judge.user.username }}</title>
+{% endblock %}
+{% block body %}
+    <h2>Stats for Judge {{ judge.user.username }}</h2>
+    <table>
+        <tr><th>Criterion</th><th>Average Score</th></tr>
+        {% for score in scores %}
+        <tr>
+            <td>{{ score.criterion }}</td><td>{{ score.avg }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

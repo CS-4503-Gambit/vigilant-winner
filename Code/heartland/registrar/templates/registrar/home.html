@@ -1,16 +1,16 @@
-<html>
-    <head>
-        <title>Registrar Home</title>
-    </head>
-    <body>
-        <h2>
-            Registrar Home
-        </h2>
-        <p>
-            <a href="{% url 'addteam' %}">Add a Team</a>
-        </p>
-        <p>
-            <a href="{% url 'teams' %}">Registered Teams</a>
-        </p>
-    </body>
-</html>
+{% extends 'registrar/base.html' %}
+
+{% block head %}
+    <title>Registrar Home</title>
+{% endblock %}
+{% block body %}
+    <h2>
+        Registrar Home
+    </h2>
+    <p>
+        <a href="{% url 'addteam' %}">Add a Team</a>
+    </p>
+    <p>
+        <a href="{% url 'teams' %}">Registered Teams</a>
+    </p>
+{% endblock %}
