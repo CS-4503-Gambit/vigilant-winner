@@ -4,6 +4,7 @@ from django.template import loader
 from django.shortcuts import redirect, render
 from .models import Registrar, Judge
 
+# Upon successful login, redirect to the appropriate screen.
 def login_success(request):
     if request.user.is_superuser:
         return redirect("/admin/home")

@@ -72,6 +72,8 @@ def submit_score(request, team_name):
         s.save()
     return redirect('/judge/home')
 
+# Sync the cached data with the database. The cached data is passed as a JSON string in the 
+# body of the http request.
 @csrf_exempt
 def sync(request):
     judge = request.user.judge
@@ -99,4 +101,4 @@ def sync(request):
                     s.value = score
                     s.save()
         return HttpResponse("Success")
-    return HttpResponse("Error")
+    return HttpResponse("Error", status=204)

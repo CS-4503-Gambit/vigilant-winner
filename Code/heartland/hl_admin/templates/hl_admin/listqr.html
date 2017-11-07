@@ -22,10 +22,4 @@
             <p><a href='{% url 'qr_team' team.team_name %}'>{{ team.team_name }}</a></p>
         {% endfor %}
     {% endif %}
-    <script type = "text/javascript">
-		function home(){
-			window.location.href= "/admin/home";
-		}
-    </script>
-    <p><button onclick="home()">Home</button>
 {% endblock %}
