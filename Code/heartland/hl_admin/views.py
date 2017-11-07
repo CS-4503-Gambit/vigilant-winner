@@ -26,7 +26,7 @@ def criteria(request, category):
 def scores(request, category, criteria):
     cat = Category.objects.get(name=category)
     crit = Score_Criterion.objects.get(name=criteria)
-    scores = Score.objects.filter(criterion=crit, judge_team__team__category=cat).values('judge_team__team').annotate(avg=Avg('value')).order_by('-avg')
+    scores = Score.objects.filter(criterion=crit, judge_team__team__category=cat).values('judge_team__team', 'judge_team__team__entry_name').annotate(avg=Avg('value')).order_by('-avg')
     context = {'category': cat, 'criterion': crit, 'scores': scores}
     return render(request, 'hl_admin/scores.html', context)
 
