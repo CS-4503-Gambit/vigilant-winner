@@ -22,20 +22,25 @@
 {% endblock %}
 {% block body %}
     <script type="text/javascript">
-            function showQR() {
-                document.getElementById('use_qr').style.visibility = 'hidden';
-                video = document.getElementById('video');
-                video.width = 480;
-                video.height = 480;
-                qrcode.setWebcam("video");
-            }
-            qrcode.callback = function(str) {
-                alert(str);
-                window.location.href = "/judge/teams/" + str;
-            }
+        function showQR() {
+            document.getElementById('use_qr').style.visibility = 'hidden';
+            video = document.getElementById('video');
+            video.width = 480;
+            video.height = 480;
+            qrcode.setWebcam("video");
+        }
+        qrcode.callback = function(str) {
+            window.location.href = "/judge/teams/" + str;
+        }
+        function syncDb() {
+            window.location.href = "/judge/sync/";
+        }
     </script>
     <p>
         <button id="use_qr" onclick="showQR()">Use QR Code</button>
+    </p>
+    <p>
+        <button id="sync" onclick="syncDb()">Sync with Server</button>
     </p>
     <p>
         <video id="video" width="0" height="0" autoplay="true"/>

@@ -5,14 +5,30 @@
 {% endblock %}
 {% block body %}
     <p>Entry {{ team.entry_name }}</p>
-    <form action="{% url 'submit_score' team.team_name %}" method="post">
+    <form action="{% url 'submit_score' team.team_name %}" id='form' method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Submit"/>
+        <button onclick="mysubmit()">Submit</button>
     </form>
     <script>
         function cancel() {
             window.location = "/judge/home"
+        }
+        function mysubmit() {
+            var form = document.getElementById("form");
+            var dict = localStorage.getItem("forms");
+            if (dict === null) {
+                dict = {}
+            } else {
+                dict = JSON.parse(dict);
+            }
+            dict["{{ team.team_name }}"] = [];
+            console.log(dict);
+            for (var i = 1;i < form.elements.length - 1;i ++) {
+                dict['{{ team.team_name }}'].push(form.elements[i].value);
+            }
+            localStorage.setItem("forms", JSON.stringify(dict));
+            form.submit();
         }
     </script>
     <p><button onclick="cancel()">Cancel</button>
