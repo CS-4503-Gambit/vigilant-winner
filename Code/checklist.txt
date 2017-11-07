@@ -24,4 +24,4 @@ Administration:
    ✔ The administrator shall be able to see judging statistics for each individual judge.
    
 Performance:
-	✔ can be run on android devices
+   ✔ can be run on android devices
