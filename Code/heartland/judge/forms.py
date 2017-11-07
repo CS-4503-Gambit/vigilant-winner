@@ -1,5 +1,6 @@
 from django import forms
 
+#dynamically generates webpages based on inputs
 class JudgeForm(forms.Form):
     def __init__(self, *args, **kwargs):
         criteria = kwargs.pop('criteria')

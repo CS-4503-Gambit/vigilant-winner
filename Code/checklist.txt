@@ -1,13 +1,27 @@
-Create database (database layer)
-    Implement in SQLite
-    
-Create data access layer:
-    Implement in Python
 
-Create Logic Layer:
-    UI Backend
-    Implement in Python
+Registration:
+   ✔ Teams must have a name and project name  
+   ✔ Teams must select a category from a predefined list.  
+   ✔ A QR code shall then be generated for the team that can be scanned by the judges.  
+   ✔ The team’s information shall be added to the database  
+   ✔ Registration shall be done using a user of the class “Registrar”, with the exception of specific administrative action. 
 
-Create GUI Layer:
-    Administrator:
-        
+Judging:  
+   ✔ Judges shall be able to scan a team’s QR code to find the judging criteria for a team and judge them.  
+   ✔ The judge shall also have a way to determine teams they have judged and teams they have not judged.
+   ✔ After a team is judged, the information shall be stored in the database before scoring. 
+   ✔ The information shall be stored locally in case the network connection is poor and shall update the database with the information when network connectivity has improved.  
+   ✔ The application shall be able to handle device crashing without loss of data.  
+   ✔ Judges shall be able to rescore previously scored applications. 
+ 
+Administration:
+   ✔ The administrator shall have a website from which they can find the winners of the categories after judging in a readable format.
+   ✔ The administrator shall be able to change elements related to registration and judging.
+   ✔ The administrator shall be able to define new categories and the metrics within the categories. 
+   ✔ The administrator shall be able to add and remove users, as well as set the role of the users.  
+   ✔ The administrator shall be able to add and remove teams from the competition. 
+   ✔ The administrator shall be able to reinitialize the database in preparation for a new competition. 
+   ✔ The administrator shall be able to see judging statistics for each individual judge.
+   
+Performance:
+   ✔ can be run on android devices

@@ -10,4 +10,10 @@
             <li><a href="{% url  'scores' category.name crit.name %}">{{crit.name}}</a></li>
         {% endfor %}
     </ul>
+    <script type = "text/javascript">
+		function home(){
+			window.location.href= "/admin/home";
+		}
+    </script>
+    <p><button onclick="home()">Home</button>
 {% endblock %}
