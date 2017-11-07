@@ -12,21 +12,36 @@ def home(request):
 	#Database searches to seperate judged and unjuded teams
     unjudged = Team.objects.exclude(team_name__in=Judge_Team.objects.filter(judge=judge).values('team'))
     judged = Team.objects.filter(team_name__in=Judge_Team.objects.filter(judge=judge).values('team'))
-    criteria = [x['name'] for x in Score_Criterion.objects.values('name')]
-    scorings = []
-    judge_teams = Judge_Team.objects.filter(judge=judge)
-    for jt in judge_teams:
-        d = {}
-        d['judge_team'] = jt
-        jt_crit = [x['criterion'] for x in jt.score_set.values('criterion')]
-        for crit in criteria:
-            if crit in jt_crit:
-                d[crit] = str(jt.score_set.get(criterion=crit).value)
-            else:
-                d[crit] = "N/A"
-        scorings.append(d)
-	#map to html page
-    context = {'unjudged': unjudged, 'scorings': scorings, 'criteria': criteria}
+    categories = []
+    for cat in Category.objects.all():
+        criteria = [x.name for x in cat.criteria.all()]
+        d = {'name': cat.name, 'criteria': criteria, 'teams': []}
+        for team in cat.team_set.all():
+            try:
+                jt = Judge_Team.objects.get(judge=judge, team=team)
+            except:
+                continue
+            team_dict = {'team_name': team.team_name, 'entry_name': team.entry_name}
+            d['teams'].append(team_dict)
+            for score in jt.score_set.all():
+                team_dict[score.criterion.name] = score.value
+        if len(d['teams']) > 0:
+            categories.append(d)
+#    criteria = [x['name'] for x in Score_Criterion.objects.values('name')]
+#    scorings = []
+#    judge_teams = Judge_Team.objects.filter(judge=judge)
+#    for jt in judge_teams:
+#        d = {}
+#        d['judge_team'] = jt
+#        jt_crit = [x['criterion'] for x in jt.score_set.values('criterion')]
+#        for crit in criteria:
+#            if crit in jt_crit:
+#                d[crit] = str(jt.score_set.get(criterion=crit).value)
+#            else:
+#                d[crit] = "N/A"
+#        scorings.append(d)
+#	#map to html page
+    context = {'unjudged': unjudged, 'categories': categories, 'criteria': criteria}
     return render(request, 'judge/home.html', context)
 
 #Judging page where scoring criteria are desplayed for a particular team
