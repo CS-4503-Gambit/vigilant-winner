@@ -11,8 +11,8 @@
         <button onclick="mysubmit()">Submit</button>
     </form>
     <script>
-        function home() {
-            window.location = "/judge/home"
+        function cancel() {
+            window.location.href = "/judge/home"
         }
         function mysubmit() {
             var form = document.getElementById("form");
@@ -33,5 +33,5 @@
             form.submit();
         }
     </script>
-    <p><button onclick="cancel()">home</button>
+    <p><button onclick="cancel()">Cancel</button>
 {% endblock %}
