@@ -34,7 +34,7 @@
         }
         function syncDb() {
             var data = localStorage["forms"];
-            if (data !== null) {
+            if (data != null) {
                 var http = new XMLHttpRequest();
                 var url = "/judge/sync/";
                 http.open("POST", url, true);
