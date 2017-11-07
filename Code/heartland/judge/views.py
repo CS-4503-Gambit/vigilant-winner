@@ -1,7 +1,9 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from core.models import *
 from .forms import JudgeForm
+import json
 
 # Create your views here.
 #Home page for the judge page
@@ -69,3 +71,32 @@ def submit_score(request, team_name):
         s.value = data[crit.name]
         s.save()
     return redirect('/judge/home')
+
+@csrf_exempt
+def sync(request):
+    judge = request.user.judge
+    if request.method == 'POST':
+        data = json.loads(request.body.decode("utf-8"))
+        for team_name, values in data.items():
+            team = Team.objects.get(team_name=team_name)
+            try:
+                jt = Judge_Team.objects.get(judge=judge, team=team)
+            except:
+                jt = Judge_Team()
+                jt.judge = judge
+                jt.team = team
+                jt.save()
+            for value in values:
+                for sc_name, score in value.items():
+                    sc = Score_Criterion.objects.get(name=sc_name)
+                    try:
+                        s = Score.objects.get(criterion=sc, judge_team=jt)
+                    except:
+                        s = Score()
+                        s.criterion = sc
+                        s.judge_team = jt
+                        s.save()
+                    s.value = score
+                    s.save()
+        return HttpResponse("Success")
+    return HttpResponse("Error")

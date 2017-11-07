@@ -33,7 +33,6 @@
                 qrcode.setWebcam("video");
             }
             qrcode.callback = function(str) {
-                alert(str);
                 var split = str.split("%");
                 if (split.length == 2) {
                     document.getElementById('id_username').value = split[0];

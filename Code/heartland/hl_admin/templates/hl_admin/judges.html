@@ -1,13 +1,15 @@
-{% extends 'admin/base.html' %}
+{% extends 'hl_admin/base.html' %}
 
 {% block head %}
-    <title>Criteria for {{ category.name }}</title>
+    <title>Judges</title>
 {% endblock %}
 {% block body %}
-    <p>{{ category.name }}</p>
+    <h2>
+        List of Judges
+    </h2>
     <ul>
-        {% for crit in category.criteria.all %}
-            <li><a href="{% url  'scores' category.name crit.name %}">{{crit.name}}</a></li>
+        {% for judge in judges %}
+            <li><a href="{% url 'judge_stats' judge.user.username %}">{{judge.user.username}}</a></li>
         {% endfor %}
     </ul>
     <script type = "text/javascript">

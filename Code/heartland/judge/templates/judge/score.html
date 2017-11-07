@@ -25,7 +25,9 @@
             dict["{{ team.team_name }}"] = [];
             console.log(dict);
             for (var i = 1;i < form.elements.length - 1;i ++) {
-                dict['{{ team.team_name }}'].push(form.elements[i].value);
+                var d = {};
+                d[form.elements[i].name] = form.elements[i].value;
+                dict['{{ team.team_name }}'].push(d);
             }
             localStorage.setItem("forms", JSON.stringify(dict));
             form.submit();
