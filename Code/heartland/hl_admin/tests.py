@@ -30,7 +30,7 @@ class AdminTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         # Check that both categories are present
         self.assertContains(response, "Video Games")
-        self.assertContains(response, "FPS")
+        self.assertContains(response, "Art")
 
     # Test the create user screen
     def test_create_user(self):
@@ -55,9 +55,12 @@ class AdminTestCase(TestCase):
         self.assertContains(response, 'Teams')
         # check that the specific entries are present
         self.assertContains(response, 'registrar')
+        self.assertContains(response, 'reg')
         self.assertContains(response, 'judge')
-        self.assertContains(response, 'Team')
-        self.assertContains(response, 'Team Two')
+        self.assertContains(response, 'judy')
+        self.assertContains(response, 'Bethesda Softworks')
+        self.assertContains(response, 'Irrational Studios')
+        self.assertContains(response, 'Leonardo Da Vinci')
 
     def test_judge_list(self):
         self.setup()
@@ -68,3 +71,4 @@ class AdminTestCase(TestCase):
         self.assertContains(response, 'List of Judges')
         # Check that the judge is present
         self.assertContains(response, 'judge')
+        self.assertContains(response, 'judy')
