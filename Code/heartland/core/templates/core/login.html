@@ -70,7 +70,7 @@ div {
     <body>
         <h2>Login</h2>
 		<div>
-        <form method="post" id="login_form" type="text">
+        <form method="post" id="login_form">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Submit">
@@ -95,7 +95,7 @@ div {
         </script>
         <p>
 		<div>
-            <button id="use_qr" type="qr" onclick="showQR()">Use QR Code</button>
+            <input type="qr" id="use_qr" onclick="showQR()">Use QR Code>
         </div>
 		</p>
         <p>
