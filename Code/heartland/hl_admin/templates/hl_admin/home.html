@@ -6,7 +6,7 @@
 {% block body %}
 <style>
 
-	input[type=button] {
+	input[type=submit] {
 		width: 100%;
 		background-color: #4CAF50;
 		color: white;
@@ -24,9 +24,11 @@
 	}
 </style>
 <div>
+	<form action="/admin/db" method="get">
     <p>
-		<input type="button" href="/admin/db" value="Manage Database">
+		<input type="submit" value="Manage Database">
     </p>
+	</form>
     <p>
         <a href="/admin/scores/">View Results</a>
     </p>
