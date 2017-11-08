@@ -1,5 +1,10 @@
 {% extends 'hl_admin/base.html' %}
-	<style>
+	
+{% block head %}
+    <title>Admin Home</title>
+{% endblock %}
+{% block body %}
+<style>
 
 	input[type=myButton] {
 		width: 100%;
@@ -18,10 +23,6 @@
 		padding: 20px;
 	}
 </style>
-{% block head %}
-    <title>Admin Home</title>
-{% endblock %}
-{% block body %}
 <div>
     <p>
 		<input type="myButton" href="/admin/db" value="Manage Database"></button>
