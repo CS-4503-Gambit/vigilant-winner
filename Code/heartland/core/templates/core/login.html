@@ -25,7 +25,7 @@
 		text-align: center;
 	}
 
-	input[type=text], select {
+	input[type=text, password], select {
 		width: 100%;
 		padding: 12px 20px;
 		margin: 8px 0;
@@ -59,13 +59,13 @@
     <body>
 	
         <h2>LOGIN</h2>
+		<div>
         <form method="post" id="login_form">
-            <div>
 			{% csrf_token %}
             {{ form.as_p }}
             <input type="myButton" value="Submit">
-			</div>
         </form>
+		<div>
 
 		
         <script type="text/javascript">
