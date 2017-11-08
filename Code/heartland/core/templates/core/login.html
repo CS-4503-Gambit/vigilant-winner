@@ -45,7 +45,7 @@
 		box-sizing: border-box;
 	}
 
-	input[type=myButton] {
+	input[type=submit] {
 		width: 100%;
 		background-color: #4CAF50;
 		color: white;
@@ -73,7 +73,7 @@
         <form method="post" id="login_form">
 			{% csrf_token %}
             {{ form.as_p }}
-            <input type="myButton" value="Submit">
+            <button type="submit">Login</button>
         </form>
 		</div>
 
@@ -98,7 +98,7 @@
 		
         <p>
 		<div>
-            <input type="myButton" id="use_qr" onclick="showQR()" value="Use QR Code">
+            <input type="submit" id="use_qr" onclick="showQR()" value="Use QR Code">
         </div>
 		</p>
         <p>
