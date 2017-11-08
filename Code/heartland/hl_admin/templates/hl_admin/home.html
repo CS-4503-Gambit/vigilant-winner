@@ -1,9 +1,9 @@
 {% extends 'hl_admin/base.html' %}
 	<style>
 
-	input[type=logout] {
+	input[type=myButton] {
 		width: 100%;
-		background-color: #af4c4c;
+		background-color: #4CAF50;
 		color: white;
 		padding: 14px 20px;
 		margin: 8px 0;
@@ -24,7 +24,7 @@
 <div>
 {% block body %}
     <p>
-        <a href="/admin/db">Manage Database</a>
+		<input type="myButton" href="/admin/db" value="Manage Database">
     </p>
     <p>
         <a href="/admin/scores/">View Results</a>
