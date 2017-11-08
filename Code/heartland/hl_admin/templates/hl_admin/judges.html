@@ -35,7 +35,7 @@
        <!-- <li><a href="{% url 'judge_stats' judge.user.username %}">{{judge.user.username}}</a></li> -->
 		<li><form action="{% url 'judge_stats' judge.user.username %}" method="get">
 		<p>
-			<input type="submit" value={{judge.user.username}}>
+			<input type="submit" value={judge.user.username}>
 		</p>
 		</li>
         {% endfor %}
