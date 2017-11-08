@@ -1,8 +1,27 @@
 {% extends 'hl_admin/base.html' %}
+	<style>
 
+	input[type=logout] {
+		width: 100%;
+		background-color: #af4c4c;
+		color: white;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		text-align: center;
+	}
+
+	div {
+		border-radius: 5px;
+		padding: 20px;
+	}
+</style>
 {% block head %}
     <title>Admin Home</title>
 {% endblock %}
+<div>
 {% block body %}
     <p>
         <a href="/admin/db">Manage Database</a>
@@ -19,4 +38,5 @@
     <p>
         <a href="/admin/viewqr/">View QR Codes</a>
     </p>
+</div>
 {% endblock %}
