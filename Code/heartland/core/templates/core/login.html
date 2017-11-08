@@ -46,6 +46,10 @@ input[type=submit]:hover {
     background-color: #45a049;
 }
 
+input[type=qr]:hover {
+    background-color: #45a049;
+}
+
 div {
     border-radius: 5px;
     background-color: #f2f2f2;
@@ -79,8 +83,10 @@ div {
             }
         </script>
         <p>
-            <button id="use_qr" onclick="showQR()">Use QR Code</button>
-        </p>
+		<div>
+            <button id="use_qr" type="qr" onclick="showQR()">Use QR Code</button>
+        </div>
+		</p>
         <p>
             <video id="video" width=0 height=0 autoplay=true/>
         </p>
