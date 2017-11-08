@@ -1,13 +1,40 @@
+<style>
+
+	input[type=submit] {
+		width: 100%;
+		background-color: #4CAF50;
+		color: white;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		text-align: center;
+	}
+
+	div {
+		border-radius: 5px;
+		padding: 20px;
+	}
+	h2{
+		text-align: center;
+	}
+</style>
+<div>
 {% extends 'hl_admin/base.html' %}
 
 {% block head %}
     <title>Criteria for {{ category.name }}</title>
 {% endblock %}
 {% block body %}
-    <p>{{ category.name }}</p>
-    <ul>
+    <h2>{{ category.name }}<h2>
         {% for crit in category.criteria.all %}
-            <li><a href="{% url  'scores' category.name crit.name %}">{{crit.name}}</a></li>
+         <!--    <li><a href="{% url  'scores' category.name crit.name %}">{{crit.name}}</a></li>  -->
+		 <form action="{% url  'scores' category.name crit.name %}" method="get">
+		<p>
+			<input type="submit" value={{crit.name}}>
+		</p>
+		</form>
         {% endfor %}
-    </ul>
 {% endblock %}
+</div>
