@@ -50,7 +50,7 @@
 		background-color: #4CAF50;
 		color: white;
 		padding: 14px 20px;
-		margin: 8px;
+		margin: 8px 0;
 		border: none;
 		border-radius: 4px;
 		cursor: pointer;
@@ -59,6 +59,10 @@
 
 	input[type=myButton]:hover {
 		background-color: #45a049;
+	}
+	
+	input[type=myVideo] {
+		text-align: center;
 	}
 
 	div {
@@ -75,7 +79,7 @@
             {{ form.as_p }}
             <input type="myButton" value="Submit">
         </form>
-		<div>
+		</div>
 
 		
         <script type="text/javascript">
@@ -102,7 +106,9 @@
         </div>
 		</p>
         <p>
-            <video id="video" width=0 height=0 autoplay=true/>
+		<div>
+            <video id="video" type="myVideo" width=0 height=0 autoplay=true/>
+		</div>
         </p>
     </body>
 </html>
