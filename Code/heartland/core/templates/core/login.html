@@ -1,4 +1,5 @@
 <html>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <head>
         {% load static %}
         <title>Login</title>
@@ -21,7 +22,12 @@
         <script type="text/javascript" src="{% static "/qr/databr.js" %}"></script> 
     </head>
     <body>
-        <h2>Login</h2>
+	<div class="w3-top">
+		<div class="w3-bar w3-black w3-card">
+        <a href="javascript:void(0)" onclick="showQR()" class="w3-bar-item w3-button w3-padding-large">SCAN QR CODE</a>
+		</div>
+	</div>
+		<h2>Login</h2>
         <form method="post" id="login_form">
             {% csrf_token %}
             {{ form.as_p }}
@@ -29,7 +35,6 @@
         </form>
         <script type="text/javascript">
             function showQR() {
-                document.getElementById('use_qr').style.visibility = 'hidden';
                 qrcode.setWebcam("video");
             }
             qrcode.callback = function(str) {
@@ -44,9 +49,6 @@
                 }
             }
         </script>
-        <p>
-            <button id="use_qr" onclick="showQR()">Use QR Code</button>
-        </p>
         <p>
             <video id="video" width=0 height=0 autoplay=true/>
         </p>
