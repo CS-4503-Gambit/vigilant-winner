@@ -4,6 +4,12 @@
         {% endblock %}
     </head>
     <body>
+        <script type="text/javascript">
+            function logout() {
+                window.location.href = "/logout";
+            }
+        </script>
+        <button onclick="logout()">Log Out</button>
         {% block body %}
         {% endblock %}
         {% if not no_home %}
