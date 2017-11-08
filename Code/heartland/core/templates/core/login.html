@@ -59,13 +59,14 @@
     <body>
 	
         <h2>LOGIN</h2>
-		<div>
         <form method="post" id="login_form">
-            {% csrf_token %}
+            <div>
+			{% csrf_token %}
             {{ form.as_p }}
             <input type="myButton" value="Submit">
+			</div>
         </form>
-		</div>
+
 		
         <script type="text/javascript">
             function showQR() {
