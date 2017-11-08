@@ -31,7 +31,7 @@ input[type=text], select {
     box-sizing: border-box;
 }
 
-input[type=submit] {
+input[type=myButton] {
     width: 100%;
     background-color: #4CAF50;
     color: white;
@@ -46,21 +46,6 @@ input[type=submit]:hover {
     background-color: #45a049;
 }
 
-input[type=qr]:hover {
-    background-color: #45a049;
-}
-
-input[type=qr] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
 div {
     border-radius: 5px;
     padding: 20px;
@@ -72,7 +57,7 @@ div {
         <form method="post" id="login_form">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Submit">
+            <input type="myButton" value="Submit">
         </form>
 		</div>
         <script type="text/javascript">
@@ -94,7 +79,7 @@ div {
         </script>
         <p>
 		<div>
-            <input type="qr" id="use_qr" onclick="showQR()" value="Use QR Code">
+            <input type="myButton" id="use_qr" onclick="showQR()" value="Use QR Code">
         </div>
 		</p>
         <p>
