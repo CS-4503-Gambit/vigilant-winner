@@ -111,7 +111,6 @@ def sync(request):
                         s = Score()
                         s.criterion = sc
                         s.judge_team = jt
-                        s.save()
                     s.value = score
                     s.save()
         return HttpResponse("Success")
